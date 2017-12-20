@@ -23,7 +23,7 @@ const updateSelectedScore = (score, value) => {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case actions.MODAL_OPENED:
+    case actions.OPEN_MODAL:
       return {
         ...state,
         displayModal: true,

@@ -10,7 +10,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSelect: (event) => {
+    onScoreSelect: (event) => {
       dispatch(openModal(event.target))
     }
   }
