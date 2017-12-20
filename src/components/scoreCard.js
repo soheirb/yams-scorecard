@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Score from './score'
 
-const ScoreCard = ({yams, onSelect}) => (
+const ScoreCard = ({yams, onScoreSelect}) => (
   <table className='table table-hover'>
     <tbody>
       {
@@ -12,7 +12,8 @@ const ScoreCard = ({yams, onSelect}) => (
           id={score.id}
           label={score.label}
           value={score.value}
-          onSelect={onSelect} />
+          type={score.type}
+          onScoreSelect={onScoreSelect} />
       )
       }
     </tbody>
