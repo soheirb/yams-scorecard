@@ -3,7 +3,7 @@ export const MODAL_CLOSED = 'MODAL_CLOSED'
 export const UPDATE_SCORE = 'UPDATE_SCORE'
 
 export const openModal = element => {
-  element = element && element.tagName === 'TD' ? element.parentElement : element
+  element = element && (element.tagName === 'DT' || element.tagName === 'DD') ? element.parentElement.parentElement : element
   return {
     type: OPEN_MODAL,
     id: element.id
