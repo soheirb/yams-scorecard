@@ -20,8 +20,7 @@ const Score = ({id, label, value, type, onScoreSelect}) => {
         </dl>
       </li>
     )
-  }
-  
+  }  
 }
 
 Score.propTypes = {
