@@ -1,7 +1,7 @@
 import * as actions from '../actions'
 
-const getScore = (yams, id) => {
-  return yams.find(score => score.id === id)
+const getScore = (scoreCards, id) => {
+  return scoreCards.identical.find(score => score.id === id)
 }
 
 const getUpdatedScore = (score, value) => {
@@ -11,8 +11,8 @@ const getUpdatedScore = (score, value) => {
   }
 }
 
-const updateScore = (yams, id, value) => {  
-  return yams.map(score => {
+const updateScores = (scoreCards, id, value) => {  
+  return scoreCards.identical.map(score => {
     if (score.id !== id) return score
     return getUpdatedScore(score, value)
   })
@@ -24,21 +24,28 @@ const updateSelectedScore = (score, value) => {
     value: parseInt(value, 10)
   }
 }
-const getSubTotals = (yams) => {
-  return yams.filter(score => score.type === 'identical')
-    .reduce((subTotal, score) => {
-      return subTotal + score.value
-    }, 0)
+
+const getBonusValue = (bonus, scoreValue) => {
+  return scoreValue >= 63 ? bonus.bonus : 0
 }
 
-const updateTotals = (yams) => {
-  return yams.map(score => {
-    if (score.id !== 'subTotal') return score
-    return {
-      ...score,
-      value: getSubTotals(yams)
+const updateTotals = (scoreCards, identicalScore) => {
+  const identicalSubTotal = identicalScore.reduce((total, score) => total += score.value, 0)
+  const bonus = getBonusValue(scoreCards.bonus, identicalSubTotal)
+  return {
+    identicalSubTotal: {
+      ...scoreCards.identicalSubTotal,
+      value: identicalSubTotal
+    },
+    bonus: {
+      ...scoreCards.bonus,
+      value: bonus
+    },
+    identicalTotal: {
+      ...scoreCards.identicalTotal,
+      value: identicalSubTotal + bonus
     }
-  })
+  }
 }
 
 const reducer = (state, action) => {
@@ -47,7 +54,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         displayModal: true,
-        selectedScore: getScore(state.yams, action.id)
+        selectedScore: getScore(state.scoreCards, action.id)
       }
     case actions.MODAL_CLOSED:
       return {
@@ -55,18 +62,23 @@ const reducer = (state, action) => {
         displayModal: false
       }
     case actions.UPDATE_SCORE:
-      let yams = updateScore(
-        state.yams,
+      let selectedScore = updateSelectedScore(
+        state.selectedScore,
+        action.value
+      )      
+      let identical = updateScores(
+        state.scoreCards,
         state.selectedScore.id,
         action.value
       )
+      let totals = updateTotals(state.scoreCards, identical)
       return {
         ...state,
-        selectedScore: updateSelectedScore(
-          state.selectedScore,
-          action.value
-        ),
-        yams: updateTotals(yams)
+        scoreCards: {
+          identical: identical,
+          ...totals
+        },
+        selectedScore: selectedScore
       }
     default:
       return state
