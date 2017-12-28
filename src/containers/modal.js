@@ -5,7 +5,8 @@ import { closeModal, updateScore, resetScore, crossScore } from '../actions'
 
 const mapStateToProps = (state) => {
   return {
-    score: state.selectedScore
+    score: state.selectedScore,
+    displayModal: state.displayModal
   }
 }
 

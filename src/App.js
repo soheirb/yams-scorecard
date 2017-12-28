@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import './App.css'
 import ScoreCard from './containers/scoreCard'
 import Result from './components/result'
-import Modal from './containers/modal'
+import Overlay from './containers/modal'
 import { getTotals } from './reducers'
 
 class App extends Component {
@@ -34,9 +34,7 @@ class App extends Component {
         )}
         <Result value={totals.combinedTotal} label="Total 1" />
         <Result value={totals.gameTotal} label="Total 1 + 2" />
-        {
-          this.props.displayModal && ( <Modal /> )          
-        }    
+        <Overlay />
       </div>
     );
   }

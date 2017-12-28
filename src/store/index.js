@@ -2,7 +2,11 @@ import { createStore } from 'redux'
 import reducers from '../reducers'
 
 const preloadedState = {
-  selectedScore: null,
+  selectedScore: {
+    label: '',
+    value: 0,
+    id: ''
+  },
   displayModal: false,
   scoreCards: {
     identical: [{
