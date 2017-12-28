@@ -2,16 +2,17 @@ import { connect } from 'react-redux'
 import ScoreCard from '../components/scoreCard.js'
 import { openModal } from '../actions'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, { score, type }) => {
   return {
-    yams: state.yams
+    score,
+    type
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, { type }) => {
   return {
     onScoreSelect: (event) => {
-      dispatch(openModal(event.target))
+      dispatch(openModal(event.currentTarget, type))
     }
   }
 }
