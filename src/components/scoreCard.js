@@ -1,25 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Score from './score'
 
-const ScoreCard = ({yams, onScoreSelect}) => (
-  <div className="list-group">
-    {
-    yams.map((score) =>
-      <Score
-        key={score.id}
-        id={score.id}
-        label={score.label}
-        value={score.value}
-        type={score.type}
-        onScoreSelect={onScoreSelect} />
-    )
-    }
-  </div>
-)
+const ScoreCard = ({score, onScoreSelect}) => {
+  let formattedValue = score.crossed ? (<b>{'\u2014'}</b>) : score.value
+  formattedValue = formattedValue !== 0 ? formattedValue : ''
+  return (
+    <button onClick={onScoreSelect} id={score.id} type='button' className='list-group-item list-group-item-action'>
+      <dl className='row'>
+        <dt className='col'>{score.label}</dt>
+        <dd className='col-2'>{formattedValue}</dd>
+      </dl>
+    </button>
+  )
+}
 
 ScoreCard.propTypes = {
-  yams: PropTypes.array.isRequired
+  score: PropTypes.object.isRequired,
+  onScoreSelect: PropTypes.func.isRequired
 }
 
 export default ScoreCard
