@@ -8,98 +8,94 @@ const preloadedState = {
     identical: [{
       id: 'theAces',
       label: 'Les As',
-      value: 2,
+      value: 0,
       minValue: 1,
-      maxValue: 5
+      maxValue: 5,
+      crossed: false
     }, {
       id: 'the2',
       label: 'Les Deux',
-      value: 6,
+      value: 0,
       minValue: 2,
-      maxValue: 10
+      maxValue: 10,
+      crossed: false
     }, {
       id: 'the3',
       label: 'Les Trois',
-      value: 9,
+      value: 0,
       minValue: 3,
-      maxValue: 15
+      maxValue: 15,
+      crossed: false
     }, {
       id: 'the4',
       label: 'Les Quatre',
-      value: 12,
+      value: 0,
       minValue: 4,
-      maxValue: 20
+      maxValue: 20,
+      crossed: false
     }, {
       id: 'the5',
       label: 'Les Cinq',
-      value: 15,
+      value: 0,
       minValue: 5,
-      maxValue: 25
+      maxValue: 25,
+      crossed: false
     }, {
       id: 'the6',
       label: 'Les Six',
-      value: 18,
+      value: 0,
       minValue: 6,
-      maxValue: 30
+      maxValue: 30,
+      crossed: false
     }],
-    identicalSubTotal: {
-      label: 'Sous-Total',
-      value: null
-    },
-    bonus: {
-      label: 'Bonus',
-      bonus: 30,
-      value: null
-    }, 
-    identicalTotal: {
-      label: 'Total 1',
-      value: null
-    },
     combined: [{
       id: 'chance',
       type: 'combined',
       label: 'Chance',
-      value: 2
+      value: 0,
+      crossed: false
     }, {
       id: 'brelan',
       type: 'combined',
       label: 'Brelan',
-      value: 6
+      value: 0,
+      crossed: false
     }, {
       id: 'ptSuite',
       type: 'combined',
       label: 'Petite Suite',
-      value: 9
+      price: 15,
+      value: 0,
+      crossed: false
     }, {
       id: 'gdSuite',
       type: 'combined',
       label: 'Grande Suite',
-      value: 12
+      price: 30,
+      value: 0,
+      crossed: false
     }, {
       id: 'full',
       type: 'combined',
       label: 'Full',
-      value: 15
+      price: 25,
+      value: 0,
+      crossed: false
     }, {
       id: 'carre',
       type: 'combined',
       label: 'Carré',
-      value: 18
+      value: 0,
+      crossed: false
     }, {
       id: 'yams',
       type: 'combined',
       label: 'Yams',
-      value: 18
-    }],
-    combinedTotal:  {
-      label: 'Total 2',
-      value: null
-    },
-    gameTotal:  {
-      label: 'Score Final',
-      value: null
-    },
-  }  
+      price: 50,
+      value: 0,
+      crossed: false
+    }]
+  }
 }
 
 export default createStore(
