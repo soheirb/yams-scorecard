@@ -32,6 +32,7 @@ export const crossScore = () => {
     type: CROSS_SCORE
   }
 }
+
 export const closeModal = element => {
   return {
     type: MODAL_CLOSED

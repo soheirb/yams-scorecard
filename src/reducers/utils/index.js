@@ -1,7 +1,5 @@
-const BONUS = 30
-
-const findScore = (scoreList, id) => {
-  return scoreList.find(score => score.id === id)
+export const findScore = (scoreList, id) => {
+  return scoreList && scoreList.find(score => score.id === id)
 }
 
 export const getScore = (scoreCards, {id, type}) => {
@@ -11,13 +9,17 @@ export const getScore = (scoreCards, {id, type}) => {
   }
 }
 
-const getUpdatedScores = (scoreList, {id, value, crossed}) => {
-  return scoreList.map(score => {
+export const getCleanValue = (value) => {
+  return isNaN(parseInt(value, 10)) ? 0 : parseInt(value, 10)
+}
+
+export const getUpdatedScores = (scoreList, {id, value, crossed}) => {
+  return scoreList && scoreList.map(score => {
     if (score.id !== id) return score
     return {
       ...score,
       crossed,
-      value: crossed ? 0 : parseInt(value, 10)
+      value: crossed ? 0 : getCleanValue(value)
     }
   })
 }
@@ -34,13 +36,9 @@ export const updateScores = (scoreCards, selectedScore) => {
 }
 
 export const updateSelectedScore = (score, value) => {
-  let parsedValue = parseInt(value, 10)
-  if (isNaN(parsedValue)) {
-    parsedValue = 0
-  }
   return {
     ...score,
-    value: score.price ? score.price : parsedValue
+    value: score.price ? score.price : getCleanValue(value)
   }
 }
 
@@ -56,8 +54,4 @@ export const crossSelectedScore = score => {
     ...score,
     crossed: !score.crossed
   }
-}
-
-export const getBonusValue = (scoreValue) => {
-  return scoreValue >= 63 ? BONUS : 0
 }
