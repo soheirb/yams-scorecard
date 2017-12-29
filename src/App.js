@@ -6,9 +6,9 @@ import './App.css'
 import ScoreCard from './containers/scoreCard'
 import Result from './components/result'
 import Modal from './containers/modal'
-import { getTotals } from './reducers'
+import { getTotals } from './selectors'
 
-class App extends Component {
+export class App extends Component {
   render() {
     const { identical, combined } = this.props.scoreCards
     let totals = this.props.totals

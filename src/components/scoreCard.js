@@ -15,7 +15,12 @@ const ScoreCard = ({score, onScoreSelect}) => {
 }
 
 ScoreCard.propTypes = {
-  score: PropTypes.object.isRequired,
+  score: PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    value: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
+    crossed: PropTypes.bool.isRequired
+  }).isRequired,
   onScoreSelect: PropTypes.func.isRequired
 }
 
